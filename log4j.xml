@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+    
+    <appender name="import_roll" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />
+        <param name="DatePattern" value="'.'yyyy-MM" />
+        <param name="file" value="/tmp/file.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="#####[ MyApp ] %d{yyyy-MM-dd HH:mm:ss,SSS} %5p %m%n" />
+        </layout>
+    </appender>
+
+    <category name="com.package.LogManager">
+        <priority value="ERROR" />
+        <appender-ref ref="import_roll" />
+    </category>
+
+</log4j:configuration>
